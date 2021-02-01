@@ -25,6 +25,7 @@
                 <span class="trace-method"><?= $trace['function']; ?></span>
             <?php } ?>
             (line <?= $lineNumber; ?>)
+            <button class="hidden" data-clipboard-text="<?php echo implode(\DIRECTORY_SEPARATOR, $filePathParts); ?>">Copy path</button>
         </span>
     <?php } ?>
 </div>

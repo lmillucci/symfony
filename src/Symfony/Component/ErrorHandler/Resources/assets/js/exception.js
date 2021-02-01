@@ -29,6 +29,15 @@ Sfjs = (function() {
         };
     }
 
+    if (navigator.clipboard) {
+        document.querySelectorAll('[data-clipboard-text]').forEach(function(button) {
+            removeClass(button, 'hidden');
+            button.addEventListener('click', function() {
+                navigator.clipboard.writeText(button.getAttribute('data-clipboard-text'));
+            })
+        });
+    }
+
     return {
         addEventListener: addEventListener,
 
@@ -161,6 +170,14 @@ Sfjs = (function() {
                 var toggleLinks = toggles[i].querySelectorAll('a');
                 for (var j = 0; j < toggleLinks.length; j++) {
                     addEventListener(toggleLinks[j], 'click', function(e) {
+                        e.stopPropagation();
+                    });
+                }
+
+                /* Prevents from disallowing clicks on buttons inside toggles */
+                var copyToClipboardButtons = toggles[i].querySelectorAll('button');
+                for (var k = 0; k < copyToClipboardButtons.length; k++) {
+                    addEventListener(copyToClipboardButtons[k], 'click', function(e) {
                         e.stopPropagation();
                     });
                 }

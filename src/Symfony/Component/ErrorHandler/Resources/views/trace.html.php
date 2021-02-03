@@ -25,7 +25,9 @@
                 <span class="trace-method"><?= $trace['function']; ?></span>
             <?php } ?>
             (line <?= $lineNumber; ?>)
-            <button class="hidden" data-clipboard-text="<?php echo implode(\DIRECTORY_SEPARATOR, $filePathParts); ?>">Copy path</button>
+            <span class="icon icon-copy hidden" data-clipboard-text="<?php echo implode(\DIRECTORY_SEPARATOR, $filePathParts).':'.$lineNumber; ?>">
+                <?php echo $this->include('assets/images/icon-copy.svg'); ?>
+            </span>
         </span>
     <?php } ?>
 </div>

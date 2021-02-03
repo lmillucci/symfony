@@ -30,10 +30,10 @@ Sfjs = (function() {
     }
 
     if (navigator.clipboard) {
-        document.querySelectorAll('[data-clipboard-text]').forEach(function(button) {
-            removeClass(button, 'hidden');
-            button.addEventListener('click', function() {
-                navigator.clipboard.writeText(button.getAttribute('data-clipboard-text'));
+        document.querySelectorAll('[data-clipboard-text]').forEach(function(element) {
+            removeClass(element, 'hidden');
+            element.addEventListener('click', function() {
+                navigator.clipboard.writeText(element.getAttribute('data-clipboard-text'));
             })
         });
     }
@@ -174,10 +174,10 @@ Sfjs = (function() {
                     });
                 }
 
-                /* Prevents from disallowing clicks on buttons inside toggles */
-                var copyToClipboardButtons = toggles[i].querySelectorAll('button');
-                for (var k = 0; k < copyToClipboardButtons.length; k++) {
-                    addEventListener(copyToClipboardButtons[k], 'click', function(e) {
+                /* Prevents from disallowing clicks on "copy to clipboard" elements inside toggles */
+                var copyToClipboardElements = toggles[i].querySelectorAll('span[data-clipboard-text]')
+                for (var k = 0; k < copyToClipboardElements.length; k++) {
+                    addEventListener(copyToClipboardElements[k], 'click', function(e) {
                         e.stopPropagation();
                     });
                 }
